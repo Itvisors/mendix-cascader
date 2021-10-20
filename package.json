@@ -1,0 +1,32 @@
+{
+  "name": "cascader",
+  "widgetName": "Cascader",
+  "version": "1.0.0",
+  "description": "cascader widget based on https://ant.design/components/cascader/",
+  "copyright": "ITvisors (2021)",
+  "author": "Johan Munneke",
+  "engines": {
+    "node": ">=12"
+  },
+  "config": {
+    "projectPath": "./test//",
+    "mendixHost": "http://localhost:8080",
+    "developmentPort": "3000"
+  },
+  "packagePath": "itvisors",
+  "scripts": {
+    "start": "pluggable-widgets-tools start:web",
+    "build": "pluggable-widgets-tools build:web",
+    "lint": "pluggable-widgets-tools lint",
+    "lint:fix": "pluggable-widgets-tools lint:fix",
+    "prerelease": "npm run lint",
+    "release": "pluggable-widgets-tools release:web"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "@mendix/pluggable-widgets-tools": "^9.0.0"
+  },
+  "dependencies": {
+    "classnames": "^2.2.6"
+  }
+}
