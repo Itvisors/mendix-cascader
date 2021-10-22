@@ -16,6 +16,13 @@
                     <attributeType name="String"/>
                 </attributeTypes>
             </property>
+            <property key="responseAttribute" type="attribute" required="true">
+                <caption>Selected Value</caption>
+                <description/>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
         </propertyGroup>
 
         <propertyGroup caption="Additional">

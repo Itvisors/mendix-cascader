@@ -4,10 +4,6 @@ import { Cascader } from "antd";
 import "antd/dist/antd.css";
 
 export class CascaderUI extends Component {
-    onChange(value) {
-        console.log(value);
-    }
-
     render() {
         return (
             <Cascader
@@ -15,6 +11,7 @@ export class CascaderUI extends Component {
                 showSearch={this.props.isSearchable}
                 className={this.props.className}
                 placeholder="Please select"
+                onChange={value => this.props.onChange(value)}
                 defaultValue={this.props.defaultValue}
             />
         );

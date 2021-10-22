@@ -21,6 +21,7 @@ public class Root
 	public enum MemberNames
 	{
 		CascaderJSON("CascaderJSON"),
+		Response("Response"),
 		Root_City("MyFirstModule.Root_City");
 
 		private java.lang.String metaName;
@@ -142,6 +143,42 @@ public class Root
 	public final void setCascaderJSON(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String cascaderjson)
 	{
 		getMendixObject().setValue(context, MemberNames.CascaderJSON.toString(), cascaderjson);
+	}
+
+	/**
+	 * @return value of Response
+	 */
+	public final java.lang.String getResponse()
+	{
+		return getResponse(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Response
+	 */
+	public final java.lang.String getResponse(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.String) getMendixObject().getValue(context, MemberNames.Response.toString());
+	}
+
+	/**
+	 * Set value of Response
+	 * @param response
+	 */
+	public final void setResponse(java.lang.String response)
+	{
+		setResponse(getContext(), response);
+	}
+
+	/**
+	 * Set value of Response
+	 * @param context
+	 * @param response
+	 */
+	public final void setResponse(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String response)
+	{
+		getMendixObject().setValue(context, MemberNames.Response.toString(), response);
 	}
 
 	/**

@@ -27,6 +27,8 @@ export default class Cascader extends Component {
             if (array.default) {
                 defaultValue.push(array.value);
                 this.defaultValue = defaultValue;
+                // initialize default value and write back to mendix
+                this.props.responseAttribute.setValue(defaultValue.at(-1));
             }
         }
     }
@@ -46,6 +48,10 @@ export default class Cascader extends Component {
             this.setState({ updateDate: new Date() });
         }
     }
+
+    onChange = value => {
+        this.props.responseAttribute.setValue(value.at(-1));
+    };
     render() {
         if (this.options === undefined) {
             return "";
@@ -56,6 +62,7 @@ export default class Cascader extends Component {
                 defaultValue={this.defaultValue}
                 isSearchable={this.props.isSearchable}
                 className={this.props.class}
+                onChange={value => this.onChange(value)}
             />
         );
     }
