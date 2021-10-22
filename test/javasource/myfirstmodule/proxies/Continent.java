@@ -21,7 +21,8 @@ public class Continent
 	public enum MemberNames
 	{
 		Value("Value"),
-		Label("Label");
+		Label("Label"),
+		Disabled("Disabled");
 
 		private java.lang.String metaName;
 
@@ -186,6 +187,42 @@ public class Continent
 	public final void setLabel(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String label)
 	{
 		getMendixObject().setValue(context, MemberNames.Label.toString(), label);
+	}
+
+	/**
+	 * @return value of Disabled
+	 */
+	public final java.lang.Boolean getDisabled()
+	{
+		return getDisabled(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Disabled
+	 */
+	public final java.lang.Boolean getDisabled(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.Disabled.toString());
+	}
+
+	/**
+	 * Set value of Disabled
+	 * @param disabled
+	 */
+	public final void setDisabled(java.lang.Boolean disabled)
+	{
+		setDisabled(getContext(), disabled);
+	}
+
+	/**
+	 * Set value of Disabled
+	 * @param context
+	 * @param disabled
+	 */
+	public final void setDisabled(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean disabled)
+	{
+		getMendixObject().setValue(context, MemberNames.Disabled.toString(), disabled);
 	}
 
 	/**

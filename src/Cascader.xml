@@ -11,7 +11,7 @@
             <property key="optionsAttribute" type="attribute" required="true">
                 <caption>Options JSON</caption>
                 <description>Options to be selected in the dropdown in the format [{"value": "string","label": "string","children": [{"value": "string","label": "string"}]}] for 2 layers. 
-                Multiple layers of children can be added, see documentation.</description>
+                Multiple layers of children can be added. Options can be set to disable by adding a disabled boolean to the json. See documentation for more information. </description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
