@@ -17,6 +17,13 @@ export class CascaderUI extends Component {
             options = [];
         }
 
-        return <Cascader options={options} showSearch={this.props.isSearchable} placeholder="Please select" />;
+        return (
+            <Cascader
+                options={options}
+                showSearch={this.props.isSearchable}
+                className={this.props.className}
+                placeholder="Please select"
+            />
+        );
     }
 }

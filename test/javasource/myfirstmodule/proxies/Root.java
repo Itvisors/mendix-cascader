@@ -20,7 +20,8 @@ public class Root
 	 */
 	public enum MemberNames
 	{
-		CascaderJSON("CascaderJSON");
+		CascaderJSON("CascaderJSON"),
+		Root_City("MyFirstModule.Root_City");
 
 		private java.lang.String metaName;
 
@@ -141,6 +142,49 @@ public class Root
 	public final void setCascaderJSON(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String cascaderjson)
 	{
 		getMendixObject().setValue(context, MemberNames.CascaderJSON.toString(), cascaderjson);
+	}
+
+	/**
+	 * @return value of Root_City
+	 */
+	public final myfirstmodule.proxies.City getRoot_City() throws com.mendix.core.CoreException
+	{
+		return getRoot_City(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of Root_City
+	 */
+	public final myfirstmodule.proxies.City getRoot_City(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
+	{
+		myfirstmodule.proxies.City result = null;
+		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.Root_City.toString());
+		if (identifier != null)
+			result = myfirstmodule.proxies.City.load(context, identifier);
+		return result;
+	}
+
+	/**
+	 * Set value of Root_City
+	 * @param root_city
+	 */
+	public final void setRoot_City(myfirstmodule.proxies.City root_city)
+	{
+		setRoot_City(getContext(), root_city);
+	}
+
+	/**
+	 * Set value of Root_City
+	 * @param context
+	 * @param root_city
+	 */
+	public final void setRoot_City(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.City root_city)
+	{
+		if (root_city == null)
+			getMendixObject().setValue(context, MemberNames.Root_City.toString(), null);
+		else
+			getMendixObject().setValue(context, MemberNames.Root_City.toString(), root_city.getMendixObject().getId());
 	}
 
 	/**

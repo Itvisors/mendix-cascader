@@ -1,6 +1,23 @@
 /*
 Place your custom CSS here
 */
+
+.ant-cascader-picker {
+    width: 100%;
+}
+
+.ant-cascader-picker input {
+    color: #0a1325;
+    border-radius: 4px;
+    padding: 7px 30px 7px 8px;
+    padding-right: 30px;
+
+}
+
+.ant-cascader-picker span svg {
+    color: #0a1325;
+}
+
 .ant-cascader-menu {
     width: auto !important;
 }
