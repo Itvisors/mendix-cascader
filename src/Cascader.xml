@@ -8,9 +8,20 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
-            <property key="sampleText" type="string" required="false">
-                <caption>Default value</caption>
-                <description>Sample text input</description>
+            <property key="optionsAttribute" type="attribute" required="true">
+                <caption>Options JSON</caption>
+                <description>Options to be selected in the dropdown in the format [{"value": "string","label": "string","children": [{"value": "string","label": "string"}]}] for 2 layers. 
+                Multiple layers of children can be added, see documentation.</description>
+                <attributeTypes>
+                    <attributeType name="String"/>
+                </attributeTypes>
+            </property>
+        </propertyGroup>
+
+        <propertyGroup caption="Additional">
+            <property key="isSearchable" type="boolean" required="true" defaultValue="false">
+                <caption>Can search</caption>
+                <description>Whether or not the user can enter text to search the available options</description>
             </property>
         </propertyGroup>
     </properties>

@@ -24,9 +24,10 @@
   },
   "license": "MIT",
   "devDependencies": {
-    "@mendix/pluggable-widgets-tools": "^9.0.0"
+    "@mendix/pluggable-widgets-tools": "^8.18.3"
   },
   "dependencies": {
+    "antd": "^4.16.13",
     "classnames": "^2.2.6"
   }
 }

@@ -1,6 +1,6 @@
 /*
 Place your custom CSS here
 */
-.widget-hello-world {
-
+.ant-cascader-menu {
+    width: auto !important;
 }
