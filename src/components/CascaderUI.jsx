@@ -9,20 +9,13 @@ export class CascaderUI extends Component {
     }
 
     render() {
-        let options;
-
-        try {
-            options = JSON.parse(this.props.options);
-        } catch (e) {
-            options = [];
-        }
-
         return (
             <Cascader
-                options={options}
+                options={this.props.options}
                 showSearch={this.props.isSearchable}
                 className={this.props.className}
                 placeholder="Please select"
+                defaultValue={this.props.defaultValue}
             />
         );
     }

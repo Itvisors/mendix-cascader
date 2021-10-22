@@ -23,6 +23,7 @@ public class City
 		Value("Value"),
 		Label("Label"),
 		Disabled("Disabled"),
+		IsDefault("IsDefault"),
 		City_State("MyFirstModule.City_State");
 
 		private java.lang.String metaName;
@@ -224,6 +225,42 @@ public class City
 	public final void setDisabled(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean disabled)
 	{
 		getMendixObject().setValue(context, MemberNames.Disabled.toString(), disabled);
+	}
+
+	/**
+	 * @return value of IsDefault
+	 */
+	public final java.lang.Boolean getIsDefault()
+	{
+		return getIsDefault(getContext());
+	}
+
+	/**
+	 * @param context
+	 * @return value of IsDefault
+	 */
+	public final java.lang.Boolean getIsDefault(com.mendix.systemwideinterfaces.core.IContext context)
+	{
+		return (java.lang.Boolean) getMendixObject().getValue(context, MemberNames.IsDefault.toString());
+	}
+
+	/**
+	 * Set value of IsDefault
+	 * @param isdefault
+	 */
+	public final void setIsDefault(java.lang.Boolean isdefault)
+	{
+		setIsDefault(getContext(), isdefault);
+	}
+
+	/**
+	 * Set value of IsDefault
+	 * @param context
+	 * @param isdefault
+	 */
+	public final void setIsDefault(com.mendix.systemwideinterfaces.core.IContext context, java.lang.Boolean isdefault)
+	{
+		getMendixObject().setValue(context, MemberNames.IsDefault.toString(), isdefault);
 	}
 
 	/**
