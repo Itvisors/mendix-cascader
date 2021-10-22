@@ -51,6 +51,10 @@ export default class Cascader extends Component {
 
     onChange = value => {
         this.props.responseAttribute.setValue(value.at(-1));
+        //Call on change action if there is one
+        if (this.props.onChangeAction && this.props.onChangeAction.canExecute) {
+            this.props.onChangeAction.execute();
+        }
     };
     render() {
         if (this.options === undefined) {
