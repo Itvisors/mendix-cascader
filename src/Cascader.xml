@@ -8,6 +8,9 @@
     <icon/>
     <properties>
         <propertyGroup caption="General">
+            <systemProperty key="Label" />
+            <systemProperty key="Visibility"/>
+            <systemProperty key="Editability"/>
             <property key="optionsAttribute" type="attribute" required="true">
                 <caption>Options JSON</caption>
                 <description>Options to be selected in the dropdown in the format [{"value": "string","label": "string","children": [{"value": "string","label": "string"}]}] for 2 layers. 
@@ -34,6 +37,22 @@
                 <caption>On Change Action</caption>
                 <description>Action to trigger when an option is selected.</description>
             </property>
+            <property key="allowSelectParents" type="boolean" required="true" defaultValue="false">
+                <caption>Allow Select Parents</caption>
+                <description>Whether or not the user can select a 'parent' option</description>
+            </property>
+            <property key="expandOnHover" type="boolean" required="true" defaultValue="false">
+                <caption>Expand On Hover</caption>
+                <description>If set to true, the user can hover over a 'parent' to unfold the option. Otherwise the user has to click.</description>
+            </property>
+            <property key="onlyShowLabel" type="boolean" required="true" defaultValue="false">
+                <caption>Only Show Label</caption>
+                <description>If set to true, only the value of the selection option is chosen. Otherwise the complete tree is shown.</description>
+            </property>
+            <property key="placeholder" type="textTemplate" required="false">
+                <caption>Placeholder</caption>
+                <description/>
+            </property>         
         </propertyGroup>
     </properties>
 </widget>

@@ -44,6 +44,12 @@ public class Microflows
 		IMendixObject result = (IMendixObject)Core.microflowCall("MyFirstModule.DS_Root_CascaderDisabledOptions").withParams(params).execute(context);
 		return result == null ? null : myfirstmodule.proxies.Root.initialize(context, result);
 	}
+	public static void oCH_Root_Cascader(IContext context, myfirstmodule.proxies.Root _root)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("Root", _root == null ? null : _root.getMendixObject());
+		Core.microflowCall("MyFirstModule.OCH_Root_Cascader").withParams(params).execute(context);
+	}
 	public static void sUB_DeleteAllData(IContext context)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();

@@ -10,9 +10,12 @@ export class CascaderUI extends Component {
                 options={this.props.options}
                 showSearch={this.props.isSearchable}
                 className={this.props.className}
-                placeholder="Please select"
+                placeholder={this.props.placeholder}
                 onChange={value => this.props.onChange(value)}
                 defaultValue={this.props.defaultValue}
+                disabled={this.props.disabled}
+                changeOnSelect={this.props.changeOnSelect}
+                expandTrigger={this.props.expandTrigger}
             />
         );
     }

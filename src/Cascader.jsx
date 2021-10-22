@@ -13,28 +13,33 @@ export default class Cascader extends Component {
         this.defaultValue = [];
     }
 
+    // loop through array and all children arrays
     deepLoop(array, defaultValue) {
+        // If there is another children array with a minimum length, loop through the children array
         if (array.children !== undefined && array.children.length !== 0) {
             for (const i in array.children) {
+                // If default length is already filled, skip
                 if (this.defaultValue.length > 0) {
                     return;
                 }
+                // Add value to default value to have the complete trace
                 const newDefaultValue = [...defaultValue];
                 newDefaultValue.push(array.value);
                 this.deepLoop(array.children[i], newDefaultValue);
             }
         } else {
+            // This is a lowest 'child'
             if (array.default) {
                 defaultValue.push(array.value);
                 this.defaultValue = defaultValue;
-                // initialize default value and write back to mendix
+                // Initialize default value and write back to mendix
                 this.props.responseAttribute.setValue(defaultValue.at(-1));
             }
         }
     }
 
-    componentDidUpdate(prevProps) {
-        // Check if options changed
+    componentDidUpdate() {
+        // Check if options are not yet initialized but are available now
         if (this.options === undefined && this.props.optionsAttribute.status === "available") {
             try {
                 this.options = JSON.parse(this.props.optionsAttribute.value);
@@ -56,9 +61,19 @@ export default class Cascader extends Component {
             this.props.onChangeAction.execute();
         }
     };
+
+    // Just show the latest item.
+    displayRender = value => value.at(-1);
+
     render() {
         if (this.options === undefined) {
             return "";
+        }
+        const expandTrigger = this.props.expandOnHover ? "hover" : "click";
+        const displayRender = this.props.onlyShowLabel ? this.displayRender : undefined;
+        let placeholder = undefined;
+        if (this.props.placeholder && this.props.placeholder.value) {
+            placeholder = this.props.placeholder.value;
         }
         return (
             <CascaderUI
@@ -67,6 +82,11 @@ export default class Cascader extends Component {
                 isSearchable={this.props.isSearchable}
                 className={this.props.class}
                 onChange={value => this.onChange(value)}
+                disabled={this.props.responseAttribute.readOnly}
+                changeOnSelect={this.props.allowSelectParents}
+                expandTrigger={expandTrigger}
+                displayRender={displayRender}
+                placeholder={placeholder}
             />
         );
     }
