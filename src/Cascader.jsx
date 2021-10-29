@@ -33,7 +33,7 @@ export default class Cascader extends Component {
                 defaultValue.push(array.value);
                 this.defaultValue = defaultValue;
                 // Initialize default value and write back to mendix
-                this.props.responseAttribute.setValue(defaultValue.at(-1));
+                this.setResponse(defaultValue);
             }
         }
     }
@@ -54,8 +54,18 @@ export default class Cascader extends Component {
         }
     }
 
+    // Set response attribute to either the complete tree or only the selected option
+    setResponse = value => {
+        if (this.props.completeTreeResponse) {
+            this.props.responseAttribute.setValue(JSON.stringify(value));
+        } else {
+            this.props.responseAttribute.setValue(value.at(-1));
+        }
+    }
+
     onChange = value => {
-        this.props.responseAttribute.setValue(value.at(-1));
+        this.setResponse(value);
+        
         //Call on change action if there is one
         if (this.props.onChangeAction && this.props.onChangeAction.canExecute) {
             this.props.onChangeAction.execute();

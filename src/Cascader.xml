@@ -52,6 +52,10 @@
             <property key="placeholder" type="textTemplate" required="false">
                 <caption>Placeholder</caption>
                 <description>If left empty, the placeholder will be Please select</description>
+            </property>
+            <property key="completeTreeResponse" type="boolean" required="true" defaultValue="false">
+                <caption>Full response</caption>
+                <description>Whether the response shows the complete 'tree' or only the selected option. If set to true, the complete 'tree' is returned is JSON format ["Value"]. </description>
             </property>         
         </propertyGroup>
     </properties>

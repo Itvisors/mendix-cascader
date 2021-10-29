@@ -50,6 +50,12 @@ public class Microflows
 		params.put("Root", _root == null ? null : _root.getMendixObject());
 		Core.microflowCall("MyFirstModule.OCH_Root_Cascader").withParams(params).execute(context);
 	}
+	public static void oCH_Root_TreeResponse(IContext context, myfirstmodule.proxies.Root _root)
+	{
+		Map<java.lang.String, Object> params = new HashMap<>();
+		params.put("Root", _root == null ? null : _root.getMendixObject());
+		Core.microflowCall("MyFirstModule.OCH_Root_TreeResponse").withParams(params).execute(context);
+	}
 	public static void sUB_DeleteAllData(IContext context)
 	{
 		Map<java.lang.String, Object> params = new HashMap<>();
