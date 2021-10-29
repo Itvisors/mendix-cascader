@@ -11,6 +11,7 @@ export default class Cascader extends Component {
         };
         this.options = undefined;
         this.defaultValue = [];
+        this.initialized = false;
     }
 
     // loop through array and all children arrays
@@ -38,19 +39,26 @@ export default class Cascader extends Component {
         }
     }
 
-    componentDidUpdate() {
+    componentDidUpdate(prevProps) {
         // Check if options are not yet initialized but are available now
-        if (this.options === undefined && this.props.optionsAttribute.status === "available") {
-            try {
-                this.options = JSON.parse(this.props.optionsAttribute.value);
-            } catch (e) {
-                this.options = [];
+        if (this.props.optionsAttribute.status === "available") {
+            // If options not yet set or if options have been changed
+            if (this.options === undefined || prevProps.optionsAttribute !== this.props.optionsAttribute) {
+                try {
+                    this.options = JSON.parse(this.props.optionsAttribute.value);
+                } catch (e) {
+                    this.options = [];
+                }
+                if(this.initialized === false) {
+                    // Calculate default value if widget not yet initialized
+                    for (const optionIndex in this.options) {
+                        this.deepLoop(this.options[optionIndex], []);
+                    }
+                }
+                
+                this.initialized = true;
+                this.setState({ updateDate: new Date() });
             }
-            // recalculate default value
-            for (const optionIndex in this.options) {
-                this.deepLoop(this.options[optionIndex], []);
-            }
-            this.setState({ updateDate: new Date() });
         }
     }
 
