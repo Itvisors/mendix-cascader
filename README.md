@@ -11,7 +11,9 @@ Cascader widget based on https://ant.design/components/cascader/.
 - Default mendix behavior for labeling, visibility and editability.
 
 ## Usage
-To use the widget you need an object where the options are stored in JSON format (see below) and a response value.
+To use the widget you need an object where the options are stored in JSON format (see below) and a response value. In the additional properties one has multiple options to let the widget behave how you want, e.g. by allowing users to search or to expand submenus by hover over them.
+
+By default only the selected item is returned in the respose. However, one can choose to get the complete tree in the response. This tree is then returned in JSON format ["value"], where the item in the first column is placed first, then the second one, etc. 
 
 ### JSON
 The widget needs the list of options in JSON format. The format for 2 layers is:
