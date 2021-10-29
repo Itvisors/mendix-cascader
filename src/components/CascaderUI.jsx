@@ -16,6 +16,7 @@ export class CascaderUI extends Component {
                 disabled={this.props.disabled}
                 changeOnSelect={this.props.changeOnSelect}
                 expandTrigger={this.props.expandTrigger}
+                displayRender={this.props.displayRender}
             />
         );
     }

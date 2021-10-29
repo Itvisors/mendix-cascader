@@ -51,7 +51,7 @@
             </property>
             <property key="placeholder" type="textTemplate" required="false">
                 <caption>Placeholder</caption>
-                <description/>
+                <description>If left empty, the placeholder will be Please select</description>
             </property>         
         </propertyGroup>
     </properties>
