@@ -26,7 +26,8 @@ The widget needs the list of options in JSON format. The format for 2 layers is:
             }
         ]
     }
-]```
+]
+```
 This format can be extended easily with another layer, by adding another children property, e.g. for 3 layers:
 
 ```[
@@ -46,7 +47,8 @@ This format can be extended easily with another layer, by adding another childre
             }
         ]
     }
-]```
+]
+```
 
 Options can be set to disabled or default by adding a disabled/default boolean to the json, e.g.
 ```[
@@ -63,6 +65,7 @@ Options can be set to disabled or default by adding a disabled/default boolean t
             }
         ]
     }
-]```
+]
+```
 
 The default value is expected to be at the lowest level and the disabled value can be set at every level.
