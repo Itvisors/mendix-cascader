@@ -1,24 +1,68 @@
 ## Cascader
-[cascader widget based on https://ant.design/components/cascader/]
+Cascader widget based on https://ant.design/components/cascader/.
 
 ## Features
-[feature highlights]
+- Cascading dropdown to show only options based on previous answer.
+- Search for options by typing
+- Hover to show sub-menu
+- Onchange action
+- Set a custom placeholder
+- Show complete tree or only label of selected item.
+- Default mendix behavior for labeling, visibility and editability.
 
 ## Usage
-[step by step instructions]
+To use the widget you need an object where the options are stored in JSON format (see below) and a response value.
 
-## Demo project
-[link to sandbox]
+### JSON
+The widget needs the list of options in JSON format. The format for 2 layers is:
+```[
+    {
+        "value": "string",
+        "label": "string",
+        "children": [
+            {
+                "value": "string",
+                "label": "string"
+            }
+        ]
+    }
+]```
+This format can be extended easily with another layer, by adding another children property, e.g. for 3 layers:
 
-## Issues, suggestions and feature requests
-[link to GitHub issues]
+```[
+    {
+        "value": "string",
+        "label": "string",
+        "children": [
+            {
+                "value": "string",
+                "label": "string",
+                "children": [
+                    {
+                        "value": "string",
+                        "label": "string"
+                    }
+                ]
+            }
+        ]
+    }
+]```
 
-## Development and contribution
+Options can be set to disabled or default by adding a disabled/default boolean to the json, e.g.
+```[
+    {
+        "value": "string",
+        "label": "string",
+        "disabled": true,
+        "children": [
+            {
+                "value": "string",
+                "label": "string",
+                "disabled": true,
+                "default": true
+            }
+        ]
+    }
+]```
 
-1. Install NPM package dependencies by using: `npm install`. If you use NPM v7.x.x, which can be checked by executing `npm -v`, execute: `npm install --legacy-peer-deps`.
-1. Run `npm start` to watch for code changes. On every change:
-    - the widget will be bundled;
-    - the bundle will be included in a `dist` folder in the root directory of the project;
-    - the bundle will be included in the `deployment` and `widgets` folder of the Mendix test project.
-
-[specify contribution]
+The default value is expected to be at the lowest level and the disabled value can be set at every level.
