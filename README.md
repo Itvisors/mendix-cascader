@@ -2,7 +2,7 @@
 Cascader widget based on https://ant.design/components/cascader/.
 
 ## Features
-- Cascading dropdown to show only options based on previous answer.
+- Cascading dropdown to show only options based on previous answer without having to show multiple dropdowns
 - Search for options by typing
 - Hover to show sub-menu
 - Onchange action
