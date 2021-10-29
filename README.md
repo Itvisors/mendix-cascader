@@ -9,6 +9,7 @@ Cascader widget based on https://ant.design/components/cascader/.
 - Set a custom placeholder
 - Show complete tree or only label of selected item.
 - Default mendix behavior for labeling, visibility and editability.
+- Change options by changing the input JSON attribute.
 
 ## Usage
 To use the widget you need an object where the options are stored in JSON format (see below) and a response value. In the additional properties one has multiple options to let the widget behave how you want, e.g. by allowing users to search or to expand submenus by hover over them.
