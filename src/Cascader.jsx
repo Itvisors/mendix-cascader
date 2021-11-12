@@ -1,7 +1,8 @@
-import { Component, createElement } from "react";
+import { Component, createElement, Fragment } from "react";
 
 import { CascaderUI } from "./components/CascaderUI";
 import "./ui/Cascader.css";
+import { Alert } from "./components/Alert";
 
 export default class Cascader extends Component {
     constructor(props) {
@@ -93,19 +94,23 @@ export default class Cascader extends Component {
         if (this.props.placeholder && this.props.placeholder.value) {
             placeholder = this.props.placeholder.value;
         }
+        const validationFeedback = this.props.responseAttribute.validation;
         return (
-            <CascaderUI
-                options={this.options}
-                defaultValue={this.defaultValue}
-                isSearchable={this.props.isSearchable}
-                className={this.props.class}
-                onChange={value => this.onChange(value)}
-                disabled={this.props.responseAttribute.readOnly}
-                changeOnSelect={this.props.allowSelectParents}
-                expandTrigger={expandTrigger}
-                displayRender={displayRender}
-                placeholder={placeholder}
-            />
+            <Fragment>
+                <CascaderUI
+                    options={this.options}
+                    defaultValue={this.defaultValue}
+                    isSearchable={this.props.isSearchable}
+                    className={this.props.class}
+                    onChange={value => this.onChange(value)}
+                    disabled={this.props.responseAttribute.readOnly}
+                    changeOnSelect={this.props.allowSelectParents}
+                    expandTrigger={expandTrigger}
+                    displayRender={displayRender}
+                    placeholder={placeholder}
+                />
+                <Alert>{validationFeedback}</Alert>
+            </Fragment>
         );
     }
 }
