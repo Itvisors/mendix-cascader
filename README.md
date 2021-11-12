@@ -2,14 +2,15 @@
 Cascader widget based on https://ant.design/components/cascader/.
 
 ## Features
-- Cascading dropdown to show only options based on previous answer without having to show multiple dropdowns
-- Search for options by typing
-- Hover to show sub-menu
-- Onchange action
-- Set a custom placeholder
+- Cascading dropdown to show only options based on previous answer without having to show multiple dropdowns.
+- Search for options by typing.
+- Hover to show sub-menu.
+- Onchange action.
+- Set a custom placeholder.
 - Show complete tree or only label of selected item.
 - Default mendix behavior for labeling, visibility and editability.
 - Change options by changing the input JSON attribute.
+- Handle validation feedback on response attribute.
 
 ## Usage
 To use the widget you need an object where the options are stored in JSON format (see below) and a response value. In the additional properties one has multiple options to let the widget behave how you want, e.g. by allowing users to search or to expand submenus by hover over them.
