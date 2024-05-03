@@ -1,4 +1,4 @@
-import { FunctionComponent, createElement } from "react";
+import { createElement } from "react";
 import classNames from "classnames";
 
 export const Alert = ({ alertStyle, className, children, id }) =>
