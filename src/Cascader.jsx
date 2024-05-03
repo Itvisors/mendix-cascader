@@ -50,13 +50,13 @@ export default class Cascader extends Component {
                 } catch (e) {
                     this.options = [];
                 }
-                if(this.initialized === false) {
+                if (this.initialized === false) {
                     // Calculate default value if widget not yet initialized
                     for (const optionIndex in this.options) {
                         this.deepLoop(this.options[optionIndex], []);
                     }
                 }
-                
+
                 this.initialized = true;
                 this.setState({ updateDate: new Date() });
             }
@@ -70,11 +70,11 @@ export default class Cascader extends Component {
         } else {
             this.props.responseAttribute.setValue(value.at(-1));
         }
-    }
+    };
 
     onChange = value => {
         this.setResponse(value);
-        
+
         //Call on change action if there is one
         if (this.props.onChangeAction && this.props.onChangeAction.canExecute) {
             this.props.onChangeAction.execute();
@@ -90,7 +90,7 @@ export default class Cascader extends Component {
         }
         const expandTrigger = this.props.expandOnHover ? "hover" : "click";
         const displayRender = this.props.onlyShowLabel ? this.displayRender : undefined;
-        let placeholder = undefined;
+        let placeholder;
         if (this.props.placeholder && this.props.placeholder.value) {
             placeholder = this.props.placeholder.value;
         }

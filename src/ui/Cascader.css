@@ -2,11 +2,11 @@
 Place your custom CSS here
 */
 
-.ant-cascader-picker {
+.ant-cascader {
     width: 100%;
 }
 
-.ant-cascader-picker input {
+.ant-cascader input {
     color: #0a1325;
     border-radius: 4px;
     padding: 7px 30px 7px 8px;
@@ -14,7 +14,7 @@ Place your custom CSS here
 
 }
 
-.ant-cascader-picker span svg {
+.ant-cascader span svg {
     color: #0a1325;
 }
 

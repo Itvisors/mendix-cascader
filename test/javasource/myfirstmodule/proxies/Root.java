@@ -4,7 +4,7 @@
 
 package myfirstmodule.proxies;
 
-public class Root
+public class Root implements com.mendix.systemwideinterfaces.core.IEntityProxy
 {
 	private final com.mendix.systemwideinterfaces.core.IMendixObject rootMendixObject;
 
@@ -24,7 +24,7 @@ public class Root
 		Response("Response"),
 		Root_City("MyFirstModule.Root_City");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -40,32 +40,28 @@ public class Root
 
 	public Root(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "MyFirstModule.Root"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected Root(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject rootMendixObject)
 	{
-		if (rootMendixObject == null)
+		if (rootMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("MyFirstModule.Root", rootMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a MyFirstModule.Root");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, rootMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.rootMendixObject = rootMendixObject;
 		this.context = context;
 	}
 
 	/**
-	 * @deprecated Use 'Root.load(IContext, IMendixIdentifier)' instead.
-	 */
-	@java.lang.Deprecated
-	public static myfirstmodule.proxies.Root initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
-	{
-		return myfirstmodule.proxies.Root.load(context, mendixIdentifier);
-	}
-
-	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static myfirstmodule.proxies.Root initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -78,37 +74,6 @@ public class Root
 		return myfirstmodule.proxies.Root.initialize(context, mendixObject);
 	}
 
-	/**
-	 * Commit the changes made on this proxy object.
-	 */
-	public final void commit() throws com.mendix.core.CoreException
-	{
-		com.mendix.core.Core.commit(context, getMendixObject());
-	}
-
-	/**
-	 * Commit the changes made on this proxy object using the specified context.
-	 */
-	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
-	{
-		com.mendix.core.Core.commit(context, getMendixObject());
-	}
-
-	/**
-	 * Delete the object.
-	 */
-	public final void delete()
-	{
-		com.mendix.core.Core.delete(context, getMendixObject());
-	}
-
-	/**
-	 * Delete the object using the specified context.
-	 */
-	public final void delete(com.mendix.systemwideinterfaces.core.IContext context)
-	{
-		com.mendix.core.Core.delete(context, getMendixObject());
-	}
 	/**
 	 * @return value of CascaderJSON
 	 */
@@ -182,6 +147,7 @@ public class Root
 	}
 
 	/**
+	 * @throws com.mendix.core.CoreException
 	 * @return value of Root_City
 	 */
 	public final myfirstmodule.proxies.City getRoot_City() throws com.mendix.core.CoreException
@@ -192,13 +158,15 @@ public class Root
 	/**
 	 * @param context
 	 * @return value of Root_City
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final myfirstmodule.proxies.City getRoot_City(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
 		myfirstmodule.proxies.City result = null;
 		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.Root_City.toString());
-		if (identifier != null)
+		if (identifier != null) {
 			result = myfirstmodule.proxies.City.load(context, identifier);
+		}
 		return result;
 	}
 
@@ -218,23 +186,20 @@ public class Root
 	 */
 	public final void setRoot_City(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.City root_city)
 	{
-		if (root_city == null)
+		if (root_city == null) {
 			getMendixObject().setValue(context, MemberNames.Root_City.toString(), null);
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.Root_City.toString(), root_city.getMendixObject().getId());
+		}
 	}
 
-	/**
-	 * @return the IMendixObject instance of this proxy for use in the Core interface.
-	 */
+	@Override
 	public final com.mendix.systemwideinterfaces.core.IMendixObject getMendixObject()
 	{
 		return rootMendixObject;
 	}
 
-	/**
-	 * @return the IContext instance of this proxy, or null if no IContext instance was specified at initialization.
-	 */
+	@Override
 	public final com.mendix.systemwideinterfaces.core.IContext getContext()
 	{
 		return context;
@@ -243,9 +208,9 @@ public class Root
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final myfirstmodule.proxies.Root that = (myfirstmodule.proxies.Root) obj;
@@ -260,21 +225,13 @@ public class Root
 		return getMendixObject().hashCode();
 	}
 
-	/**
-	 * @return String name of this class
-	 */
+  /**
+   * Gives full name ("Module.Entity" name) of the type of the entity.
+   *
+   * @return the name
+   */
 	public static java.lang.String getType()
 	{
-		return "MyFirstModule.Root";
-	}
-
-	/**
-	 * @return String GUID from this object, format: ID_0000000000
-	 * @deprecated Use getMendixObject().getId().toLong() to get a unique identifier for this object.
-	 */
-	@java.lang.Deprecated
-	public java.lang.String getGUID()
-	{
-		return "ID_" + getMendixObject().getId().toLong();
+		return entityName;
 	}
 }

@@ -4,7 +4,7 @@
 
 package myfirstmodule.proxies;
 
-public class Country
+public class Country implements com.mendix.systemwideinterfaces.core.IEntityProxy
 {
 	private final com.mendix.systemwideinterfaces.core.IMendixObject countryMendixObject;
 
@@ -25,7 +25,7 @@ public class Country
 		Disabled("Disabled"),
 		Country_Continent("MyFirstModule.Country_Continent");
 
-		private java.lang.String metaName;
+		private final java.lang.String metaName;
 
 		MemberNames(java.lang.String s)
 		{
@@ -41,32 +41,28 @@ public class Country
 
 	public Country(com.mendix.systemwideinterfaces.core.IContext context)
 	{
-		this(context, com.mendix.core.Core.instantiate(context, "MyFirstModule.Country"));
+		this(context, com.mendix.core.Core.instantiate(context, entityName));
 	}
 
 	protected Country(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject countryMendixObject)
 	{
-		if (countryMendixObject == null)
+		if (countryMendixObject == null) {
 			throw new java.lang.IllegalArgumentException("The given object cannot be null.");
-		if (!com.mendix.core.Core.isSubClassOf("MyFirstModule.Country", countryMendixObject.getType()))
-			throw new java.lang.IllegalArgumentException("The given object is not a MyFirstModule.Country");
+		}
+		if (!com.mendix.core.Core.isSubClassOf(entityName, countryMendixObject.getType())) {
+			throw new java.lang.IllegalArgumentException(String.format("The given object is not a %s", entityName));
+		}	
 
 		this.countryMendixObject = countryMendixObject;
 		this.context = context;
 	}
 
 	/**
-	 * @deprecated Use 'Country.load(IContext, IMendixIdentifier)' instead.
-	 */
-	@java.lang.Deprecated
-	public static myfirstmodule.proxies.Country initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixIdentifier mendixIdentifier) throws com.mendix.core.CoreException
-	{
-		return myfirstmodule.proxies.Country.load(context, mendixIdentifier);
-	}
-
-	/**
 	 * Initialize a proxy using context (recommended). This context will be used for security checking when the get- and set-methods without context parameters are called.
 	 * The get- and set-methods with context parameter should be used when for instance sudo access is necessary (IContext.createSudoClone() can be used to obtain sudo access).
+	 * @param context The context to be used
+	 * @param mendixObject The Mendix object for the new instance
+	 * @return a new instance of this proxy class
 	 */
 	public static myfirstmodule.proxies.Country initialize(com.mendix.systemwideinterfaces.core.IContext context, com.mendix.systemwideinterfaces.core.IMendixObject mendixObject)
 	{
@@ -81,43 +77,13 @@ public class Country
 
 	public static java.util.List<myfirstmodule.proxies.Country> load(com.mendix.systemwideinterfaces.core.IContext context, java.lang.String xpathConstraint) throws com.mendix.core.CoreException
 	{
-		java.util.List<myfirstmodule.proxies.Country> result = new java.util.ArrayList<myfirstmodule.proxies.Country>();
-		for (com.mendix.systemwideinterfaces.core.IMendixObject obj : com.mendix.core.Core.retrieveXPathQuery(context, "//MyFirstModule.Country" + xpathConstraint))
-			result.add(myfirstmodule.proxies.Country.initialize(context, obj));
-		return result;
+		return com.mendix.core.Core.createXPathQuery(String.format("//%1$s%2$s", entityName, xpathConstraint))
+			.execute(context)
+			.stream()
+			.map(obj -> myfirstmodule.proxies.Country.initialize(context, obj))
+			.collect(java.util.stream.Collectors.toList());
 	}
 
-	/**
-	 * Commit the changes made on this proxy object.
-	 */
-	public final void commit() throws com.mendix.core.CoreException
-	{
-		com.mendix.core.Core.commit(context, getMendixObject());
-	}
-
-	/**
-	 * Commit the changes made on this proxy object using the specified context.
-	 */
-	public final void commit(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
-	{
-		com.mendix.core.Core.commit(context, getMendixObject());
-	}
-
-	/**
-	 * Delete the object.
-	 */
-	public final void delete()
-	{
-		com.mendix.core.Core.delete(context, getMendixObject());
-	}
-
-	/**
-	 * Delete the object using the specified context.
-	 */
-	public final void delete(com.mendix.systemwideinterfaces.core.IContext context)
-	{
-		com.mendix.core.Core.delete(context, getMendixObject());
-	}
 	/**
 	 * @return value of Value
 	 */
@@ -227,6 +193,7 @@ public class Country
 	}
 
 	/**
+	 * @throws com.mendix.core.CoreException
 	 * @return value of Country_Continent
 	 */
 	public final myfirstmodule.proxies.Continent getCountry_Continent() throws com.mendix.core.CoreException
@@ -237,13 +204,15 @@ public class Country
 	/**
 	 * @param context
 	 * @return value of Country_Continent
+	 * @throws com.mendix.core.CoreException
 	 */
 	public final myfirstmodule.proxies.Continent getCountry_Continent(com.mendix.systemwideinterfaces.core.IContext context) throws com.mendix.core.CoreException
 	{
 		myfirstmodule.proxies.Continent result = null;
 		com.mendix.systemwideinterfaces.core.IMendixIdentifier identifier = getMendixObject().getValue(context, MemberNames.Country_Continent.toString());
-		if (identifier != null)
+		if (identifier != null) {
 			result = myfirstmodule.proxies.Continent.load(context, identifier);
+		}
 		return result;
 	}
 
@@ -263,23 +232,20 @@ public class Country
 	 */
 	public final void setCountry_Continent(com.mendix.systemwideinterfaces.core.IContext context, myfirstmodule.proxies.Continent country_continent)
 	{
-		if (country_continent == null)
+		if (country_continent == null) {
 			getMendixObject().setValue(context, MemberNames.Country_Continent.toString(), null);
-		else
+		} else {
 			getMendixObject().setValue(context, MemberNames.Country_Continent.toString(), country_continent.getMendixObject().getId());
+		}
 	}
 
-	/**
-	 * @return the IMendixObject instance of this proxy for use in the Core interface.
-	 */
+	@Override
 	public final com.mendix.systemwideinterfaces.core.IMendixObject getMendixObject()
 	{
 		return countryMendixObject;
 	}
 
-	/**
-	 * @return the IContext instance of this proxy, or null if no IContext instance was specified at initialization.
-	 */
+	@Override
 	public final com.mendix.systemwideinterfaces.core.IContext getContext()
 	{
 		return context;
@@ -288,9 +254,9 @@ public class Country
 	@java.lang.Override
 	public boolean equals(Object obj)
 	{
-		if (obj == this)
+		if (obj == this) {
 			return true;
-
+		}
 		if (obj != null && getClass().equals(obj.getClass()))
 		{
 			final myfirstmodule.proxies.Country that = (myfirstmodule.proxies.Country) obj;
@@ -305,21 +271,13 @@ public class Country
 		return getMendixObject().hashCode();
 	}
 
-	/**
-	 * @return String name of this class
-	 */
+  /**
+   * Gives full name ("Module.Entity" name) of the type of the entity.
+   *
+   * @return the name
+   */
 	public static java.lang.String getType()
 	{
-		return "MyFirstModule.Country";
-	}
-
-	/**
-	 * @return String GUID from this object, format: ID_0000000000
-	 * @deprecated Use getMendixObject().getId().toLong() to get a unique identifier for this object.
-	 */
-	@java.lang.Deprecated
-	public java.lang.String getGUID()
-	{
-		return "ID_" + getMendixObject().getId().toLong();
+		return entityName;
 	}
 }

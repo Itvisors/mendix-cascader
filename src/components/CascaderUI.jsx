@@ -1,7 +1,6 @@
 import { Component, createElement } from "react";
 
 import { Cascader } from "antd";
-import "antd/dist/antd.css";
 
 export class CascaderUI extends Component {
     render() {
