@@ -43,6 +43,14 @@ export default class Cascader extends Component {
     componentDidUpdate(prevProps) {
         // Check if options are not yet initialized but are available now
         if (this.props.optionsAttribute.status === "available") {
+            if (this.initialized === false && this.props.responseAttribute) {
+                try {
+                    this.defaultValue = JSON.parse(this.props.responseAttribute.value);
+                } catch (e) {
+                    // do nothing
+                }
+                this.setState({ updateDate: new Date() });
+            }
             // If options not yet set or if options have been changed
             if (this.options === undefined || prevProps.optionsAttribute !== this.props.optionsAttribute) {
                 try {

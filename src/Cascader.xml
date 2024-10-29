@@ -21,7 +21,7 @@
             </property>
             <property key="responseAttribute" type="attribute" required="true">
                 <caption>Selected Value</caption>
-                <description/>
+                <description>Value that is selected. This value can also be used to set the default value. Make sure to fill the value with the full response of the selected value and not only the key.</description>
                 <attributeTypes>
                     <attributeType name="String"/>
                 </attributeTypes>
