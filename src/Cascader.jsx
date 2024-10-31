@@ -11,31 +11,32 @@ export default class Cascader extends Component {
             updateDate: undefined
         };
         this.options = undefined;
-        this.defaultValue = [];
+        this.value = undefined;
         this.initialized = false;
+        this.setByWidget = false;
     }
 
     // loop through array and all children arrays
-    deepLoop(array, defaultValue) {
+    deepLoop(array, value) {
         // If there is another children array with a minimum length, loop through the children array
         if (array.children !== undefined && array.children.length !== 0) {
             for (const i in array.children) {
                 // If default length is already filled, skip
-                if (this.defaultValue.length > 0) {
+                if (this.value && this.value.length > 0) {
                     return;
                 }
                 // Add value to default value to have the complete trace
-                const newDefaultValue = [...defaultValue];
-                newDefaultValue.push(array.value);
-                this.deepLoop(array.children[i], newDefaultValue);
+                const newValue = [...value];
+                newValue.push(array.value);
+                this.deepLoop(array.children[i], newValue);
             }
         } else {
             // This is a lowest 'child'
             if (array.default) {
-                defaultValue.push(array.value);
-                this.defaultValue = defaultValue;
+                value.push(array.value);
+                this.value = value;
                 // Initialize default value and write back to mendix
-                this.setResponse(defaultValue);
+                this.setResponse(value);
             }
         }
     }
@@ -43,13 +44,20 @@ export default class Cascader extends Component {
     componentDidUpdate(prevProps) {
         // Check if options are not yet initialized but are available now
         if (this.props.optionsAttribute.status === "available") {
-            if (this.props.responseAttribute && prevProps.responseAttribute !== this.props.responseAttribute) {
-                try {
-                    this.defaultValue = JSON.parse(this.props.responseAttribute.value);
-                } catch (e) {
-                    // do nothing
+            if (
+                this.props.responseAttribute &&
+                prevProps.responseAttribute.value !== this.props.responseAttribute.value
+            ) {
+                if (this.setByWidget) {
+                    this.setByWidget = false;
+                } else {
+                    try {
+                        this.value = JSON.parse(this.props.responseAttribute.value);
+                    } catch (e) {
+                        this.value = undefined;
+                    }
+                    this.setState({ updateDate: new Date() });
                 }
-                this.setState({ updateDate: new Date() });
             }
             // If options not yet set or if options have been changed
             if (this.options === undefined || prevProps.optionsAttribute !== this.props.optionsAttribute) {
@@ -76,13 +84,18 @@ export default class Cascader extends Component {
         if (this.props.completeTreeResponse) {
             this.props.responseAttribute.setValue(JSON.stringify(value));
         } else {
-            this.props.responseAttribute.setValue(value.at(-1));
+            if (value) {
+                this.props.responseAttribute.setValue(value.at(-1));
+            } else {
+                this.props.responseAttribute.setValue(value);
+            }
         }
+        this.value = value;
+        this.setByWidget = true;
     };
 
     onChange = value => {
         this.setResponse(value);
-
         //Call on change action if there is one
         if (this.props.onChangeAction && this.props.onChangeAction.canExecute) {
             this.props.onChangeAction.execute();
@@ -107,7 +120,7 @@ export default class Cascader extends Component {
             <Fragment>
                 <CascaderUI
                     options={this.options}
-                    defaultValue={this.defaultValue}
+                    value={this.value}
                     isSearchable={this.props.isSearchable}
                     className={this.props.class}
                     onChange={value => this.onChange(value)}

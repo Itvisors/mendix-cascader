@@ -11,7 +11,7 @@ export class CascaderUI extends Component {
                 className={this.props.className}
                 placeholder={this.props.placeholder}
                 onChange={value => this.props.onChange(value)}
-                defaultValue={this.props.defaultValue}
+                value={this.props.value}
                 disabled={this.props.disabled}
                 changeOnSelect={this.props.changeOnSelect}
                 expandTrigger={this.props.expandTrigger}
